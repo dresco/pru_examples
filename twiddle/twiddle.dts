@@ -1,0 +1,47 @@
+/*
+ *
+ */
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "ti,beaglebone", "ti,beaglebone-black";
+
+    /* identification */
+    part-number = "twiddle";
+    version     = "00A0";
+    
+    exclusive-use =  
+        "P8.12";  
+
+    fragment@0 {
+        target = <&am33xx_pinmux>;
+        __overlay__ {
+        	pinctrl_twiddle: pinctrl_twiddle_pins {
+        		pinctrl-single,pins = <
+                        0x030 0x06  /* GPIO1_12, MODE6 */ 
+        		>;
+        	};
+        };
+    };
+    
+    fragment@1 {
+        target = <&ocp>;
+        __overlay__ {
+            test_helper: helper {  
+                compatible = "bone-pinmux-helper"; 
+                pinctrl-names = "default";
+                pinctrl-0 = <&pinctrl_twiddle>;
+                status = "okay";
+            };
+        };
+    };
+    
+    fragment@2{  
+        target = <&pruss>;  
+        __overlay__ {  
+            status = "okay";  
+        };  
+    };  
+
+};
