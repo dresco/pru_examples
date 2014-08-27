@@ -22,8 +22,6 @@ int main (void)
 {
     // Initialize the PRU
     printf("Initializing PRU\n");
-        tpruss_intc_initdata pruss_intc_initdata = PRUSS_INTC_INITDATA;
-
     prussdrv_init ();
     
     // Open an event
@@ -48,7 +46,6 @@ int main (void)
     {
         // Print out the value received from the PRU code
         printf("Value = %i\n", pruData[0]);
-
     }
     
     // Disable PRU and close memory mapping
