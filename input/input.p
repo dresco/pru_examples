@@ -12,11 +12,6 @@
 .entrypoint START
 
 START:
-    // Make constant 24 (c24) point to the beginning of PRU0's data ram (0x00)
-    MOV       r0, 0x00000000
-    MOV       r1, 0x22020
-    SBBO      r0, r1, 0, 4
-    
     // Zero out r4
     ZERO &r4, 4
 
